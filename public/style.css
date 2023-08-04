@@ -1,0 +1,182 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#inputurlcapitol {
+  width: 700px;
+  height: 25px;
+  font-size: 15px;
+  margin-top: 7px;
+}
+
+#cercar {
+  height: 30px;
+  font-size: 17px;
+}
+
+#error {
+  color: red;
+  font-weight: bold;
+}
+
+main {
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table tr th:nth-child(1),
+table tr td:nth-child(1) {
+  width: 200px;
+}
+
+table tr th:nth-child(2),
+table tr td:nth-child(2),
+table tr th:nth-child(3),
+table tr td:nth-child(3),
+table tr th:nth-child(4),
+table tr td:nth-child(4),
+table tr th:nth-child(5),
+table tr td:nth-child(5) {
+  width: 110px;
+}
+
+table tr th:nth-child(6),
+table tr td:nth-child(6) {
+  width: 200px;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  width: 150px;
+}
+
+#taulaHeader,
+#taulaFooter {
+  background-color: white;
+  position: sticky;
+}
+
+#taulaHeader {
+  top: 0;
+  z-index: 1;
+}
+
+#taulaFooter {
+  bottom: 0;
+  z-index: 1;
+}
+
+#overflow {
+  max-height: calc(100vh - 200px);
+  overflow-x: auto;
+  position: relative;
+}
+
+#taulaCapitols tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+#taulaCapitols img {
+  transition: transform .2s;
+  width: 100px;
+}
+
+#taulaCapitols img:hover {
+  transform: scale(5) translate(0, 10px);
+}
+
+#taulaCapitols td button,
+#taulaFooter td button {
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: greenyellow;
+  cursor: pointer;
+}
+
+#taulaCapitols td button:not(:disabled):hover,
+#taulaFooter td button:not(:disabled):hover {
+  background-color: rgb(135, 199, 38);
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+#taulaCapitols td button:disabled,
+#taulaFooter td button:disabled {
+  background: linear-gradient(110deg, greenyellow 8%, #f5f5f5 18%, greenyellow 33%);
+  background-size: 200% 100%;
+  animation: 1s shine linear infinite;
+  cursor: wait;
+}
+
+#loader {
+  display: none;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 2px solid #5f5f5f;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 14px;
+    left: 14px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  4.9% {
+    top: 14px;
+    left: 14px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  5% {
+    top: 14px;
+    left: 14px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 28px;
+    height: 28px;
+    opacity: 0;
+  }
+}

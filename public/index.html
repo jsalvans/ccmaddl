@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCMA Downloader</title>
+  <script type="module" src="./main.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header>
+    <h2>CCMA Downloader</h2>
+    <p>Introdueix la URL del primer capítol que vols descarregar:</p>
+    <input type="text" name="url" id="inputurlcapitol">
+    <button id="cercar">🔎 Cercar</button>
+    <div id="loader" class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+    <p id="error" style="display: none;"></p>
+  </header>
+  <main id="main" style="display: none;">
+    <div id="overflow">
+      <table id="taulaHeader">
+        <thead>
+          <tr>
+            <th>Programa</th>
+            <th>Temporada</th>
+            <th>Capítol Temporada</th>
+            <th>Capítol Programa</th>
+            <th>Miniatura</th>
+            <th>Títol</th>
+            <th>Descripció</th>
+            <th>Descarregar</th>
+          </tr>
+        </thead>
+      </table>
+      <table id="taulaCapitols">
+        <tbody id="tbody">
+        </tbody>
+      </table>
+      <table id="taulaFooter">
+        <tbody id="tbodyFooter">
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+
+</html>
