@@ -154,7 +154,7 @@ const descarregarEspisodi = async (capitol, subtitols = false, retry = 0) => {
     const href = window.URL.createObjectURL(videoBlob);
     const a = document.createElement("a");
 
-    const nomFitxer = `${capitol.programa} S${capitol.temporada}E${capitol.capitol_temporada}`;
+    const nomFitxer = `${capitol.programa} ${capitol.capitol} - S${capitol.temporada}E${capitol.capitol_temporada}`;
     a.download = nomFitxer;
     a.href = href;
     a.click();
