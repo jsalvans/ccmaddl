@@ -39,7 +39,7 @@ const obtenirInfoCapitol = async (
     })?.file;
     capitol.url_video = url_video;
 
-    const url_subtitols = data.subtitols.find((s) => s.iso === "ca")?.url;
+    const url_subtitols = data.subtitols?.find((s) => s.iso === "ca")?.url;
     capitol.url_subtitols = url_subtitols;
 
     return capitol;
