@@ -158,7 +158,7 @@ Deno.serve({ port }, async (req: Request) => {
   }
 
   let url = await req.text();
-  if (!url || !url.startsWith("https://www.ccma.cat/tv3/sx3/")) {
+  if (!url || (!url.startsWith("https://www.ccma.cat/3cat/" && !url.startsWith("https://www.ccma.cat/tv3/sx3/"))) {
     return new Response("Bad request", { status: 400 });
   }
   if (url.endsWith("/")) {
