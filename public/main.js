@@ -34,6 +34,10 @@ const obtenirEpisodis = (url) => {
 };
 
 const crearTaula = (capitols) => {
+  const esPelicula = capitols.length === 1 && !capitols.at(0).programa_id;
+  const thDownload = document.getElementById('th-download');
+  thDownload.style.display = esPelicula ? 'none' : '';
+
   let tbody = document.getElementById('tbody');
   if (tbody) taulaCapitols.removeChild(tbody);
 
@@ -79,19 +83,35 @@ const crearTaula = (capitols) => {
     tdDescripcio.textContent = capitol.descripcio;
     trBody.appendChild(tdDescripcio);
 
-    const tdVideo = document.createElement('td');
-    const aVideo = document.createElement('button');
-    aVideo.id = `video-${capitol.id}`;
-    aVideo.addEventListener('click', async (e) => {
+    const tdOpenVideo = document.createElement('td');
+    const aOpenVideo = document.createElement('button');
+    aOpenVideo.id = `video-${capitol.id}`;
+    aOpenVideo.addEventListener('click', async (e) => {
       e.preventDefault();
-      await descarregarEspisodi(capitol);
+      window.open(capitol.url_video, '_blank')
     });
-    aVideo.textContent = '⬇ Baixar';
+    aOpenVideo.textContent = '🎬 Obrir vídeo';
 
-    tdVideo.appendChild(aVideo);
-    tdVideo.style.textAlign = 'center';
-    trBody.appendChild(tdVideo);
+    tdOpenVideo.appendChild(aOpenVideo);
+    tdOpenVideo.classList.add("td-open");
+    tdOpenVideo.style.textAlign = 'center';
+    trBody.appendChild(tdOpenVideo);
 
+    if (!esPelicula) {
+      const tdVideo = document.createElement('td');
+      const aVideo = document.createElement('button');
+      aVideo.id = `video-${capitol.id}`;
+      aVideo.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await descarregarEspisodi(capitol);
+      });
+      aVideo.textContent = '⬇ Baixar';
+
+      tdVideo.appendChild(aVideo);
+      tdVideo.classList.add("td-download");
+      tdVideo.style.textAlign = 'center';
+      trBody.appendChild(tdVideo);
+    }
     tbody.appendChild(trBody);
   }
 
@@ -105,20 +125,22 @@ const crearTaula = (capitols) => {
   tdFooterTotal.textContent = `Total: ${capitols.length}`;
   trFooter.appendChild(tdFooterTotal);
 
-  const tdFooterVideo = document.createElement('td');
-  const aVideo = document.createElement('button');
-  aVideo.addEventListener('click', async (e) => {
-    e.preventDefault();
-    aVideo.textContent = 'Descarregant...';
-    aVideo.disabled = true;
-    await descarregarEspisodis(capitols);
+  if (!esPelicula) {
+    const tdFooterVideo = document.createElement('td');
+    const aVideo = document.createElement('button');
+    aVideo.addEventListener('click', async (e) => {
+      e.preventDefault();
+      aVideo.textContent = 'Descarregant...';
+      aVideo.disabled = true;
+      await descarregarEspisodis(capitols);
+      aVideo.textContent = '⬇ Baixar tots';
+      aVideo.disabled = false;
+    });
     aVideo.textContent = '⬇ Baixar tots';
-    aVideo.disabled = false;
-  });
-  aVideo.textContent = '⬇ Baixar tots';
-  tdFooterVideo.appendChild(aVideo);
-  tdFooterVideo.style.textAlign = 'center';
-  trFooter.appendChild(tdFooterVideo);
+    tdFooterVideo.appendChild(aVideo);
+    tdFooterVideo.style.textAlign = 'center';
+    trFooter.appendChild(tdFooterVideo);
+  }
 
   tbodyFooter.appendChild(trFooter);
 

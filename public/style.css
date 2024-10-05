@@ -53,8 +53,11 @@ table tr td:nth-child(6) {
   width: 200px;
 }
 
-table tr th:last-child,
-table tr td:last-child {
+table tr th#th-download,
+table tr th#th-open,
+table tr td.td-download,
+table tr td.td-open,
+#tbodyFooter td:last-child {
   width: 150px;
 }
 
