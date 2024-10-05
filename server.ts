@@ -1,9 +1,21 @@
 import { Capitol, Enllac, Item, ProgramaQuery, Sx3Capitol } from "./types.d.ts";
 
+const TRUSTED_URLS = [
+  "https://www.ccma.cat/",
+  "https://www.3cat.cat/"
+];
+
 const CCMA_VIDEO_URL =
   "https://api-media.ccma.cat/pvideo/media.jsp?media=video&versio=vast&profile=pc&producte=sx3&broadcast=false&format=dm&idint=";
 const CCMA_PROGRAMA_URL =
   "https://api.ccma.cat/videos?version=2.0&_format=json&tipus_contingut=PPD&ordre=capitol&programatv_id=";
+
+const isUrlTrust = (url: string): boolean => {
+  for (const trustedUrl of TRUSTED_URLS) {
+    if (url.startsWith(trustedUrl)) return true;
+  }
+  return false;
+}
 
 const obtenirInfoCapitol = async (
   videoId: string,
@@ -158,7 +170,7 @@ Deno.serve({ port }, async (req: Request) => {
   }
 
   let url = await req.text();
-  if (!url || (!url.startsWith("https://www.ccma.cat/3cat/") && !url.startsWith("https://www.ccma.cat/tv3/sx3/"))) {
+  if (!url || !isUrlTrust(url)) {
     return new Response("Bad request", { status: 400 });
   }
   if (url.endsWith("/")) {

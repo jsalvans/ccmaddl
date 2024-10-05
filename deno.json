@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "tasks": {
-    "serve": "deno run --allow-net server.ts",
+    "serve": "deno run --allow-net --allow-read server.ts",
     "docker:build": "VERSION=$(cat deno.json | jq -r '.version') && docker build -t ccmaddl:latest -t ccmaddl:$VERSION .",
     "podman:build": "VERSION=$(cat deno.json | jq -r '.version') && podman build -t ccmaddl:latest -t ccmaddl:$VERSION ."
   }
